@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한화생명금융서비스 김기환 팀장 - 맞춤 보장 설계 전문</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts (Noto Sans KR) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Noto Sans KR', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              orange: '#FF6B00',
+              deepOrange: '#E05500',
+              navy: '#0B1E36',
+              blue: '#1E3A8A',
+              sky: '#F0F5FF',
+              lightGray: '#F8FAFC'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 antialiased min-h-screen flex flex-col items-center">
+
+  <!-- Viewport Switcher Banner (For testing Mobile vs PC view inside preview) -->
+  <div class="w-full bg-slate-900 text-white text-xs py-2 px-4 flex justify-between items-center shadow-md">
+    <div class="flex items-center space-x-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="font-medium">모바일 & PC 웹 명함 미리보기</span>
+    </div>
+    <div class="flex items-center space-x-2 bg-slate-800 rounded-lg p-1 border border-slate-700">
+      <button id="view-mobile" onclick="setViewport('mobile')" class="px-3 py-1 rounded text-xs font-semibold bg-brand-orange text-white transition">📱 모바일 보기</button>
+      <button id="view-desktop" onclick="setViewport('desktop')" class="px-3 py-1 rounded text-xs font-semibold text-slate-300 hover:text-white transition">💻 PC 전체보기</button>
+    </div>
+  </div>
+
+  <!-- Main Container Wrapper -->
+  <div id="main-container" class="w-full max-w-md transition-all duration-300 my-0 sm:my-6">
+    
+    <!-- Phone / Frame Container -->
+    <div class="bg-white min-h-screen sm:min-h-0 sm:rounded-3xl sm:shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-200 relative pb-24">
+      
+      <!-- Top Brand Header Banner -->
+      <div class="bg-gradient-to-r from-brand-navy via-slate-900 to-brand-navy text-white px-6 pt-8 pb-10 relative overflow-hidden">
+        <!-- Background Decorative Circles -->
+        <div class="absolute -right-10 -top-10 w-36 h-36 bg-brand-orange/20 rounded-full blur-2xl"></div>
+        <div class="absolute left-1/3 -bottom-10 w-28 h-28 bg-blue-500/20 rounded-full blur-xl"></div>
+        
+        <!-- Company Info Header -->
+        <div class="relative z-10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="inline-block bg-white/10 backdrop-blur-md border border-white/20 text-brand-orange text-xs font-bold px-3 py-1 rounded-full">
+              한화생명금융서비스(주)
+            </span>
+            <span class="text-xs text-slate-300 font-light">비큐러스 사업부</span>
+          </div>
+          
+          <!-- Slogan Highlight -->
+          <div class="mt-4 mb-2 bg-gradient-to-r from-brand-orange/20 to-transparent p-3.5 rounded-xl border-l-4 border-brand-orange space-y-1.5">
+            <p class="text-xs text-orange-200 font-medium">핵심 설계 철학</p>
+            <h2 class="text-base sm:text-lg font-bold text-white leading-snug tracking-tight">
+              "보장의 범위 , 크기 , 기간 이 가장 중요합니다."
+            </h2>
+            <p class="text-xs text-amber-300 font-semibold pt-1 border-t border-white/10 flex items-center gap-1.5">
+              <i class="fa-solid fa-handshake-angle text-brand-orange"></i>
+              "계약보다는 납득이 먼저입니다."
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Section Card (Overlapping header) -->
+      <div class="px-5 -mt-6 relative z-20">
+        <div class="glass-card rounded-2xl p-5 shadow-lg border border-slate-100 flex flex-col items-center text-center">
+          
+          <!-- Profile Avatar Image -->
+          <div class="relative mb-3">
+            <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-brand-orange to-amber-400 p-1 shadow-md">
+              <div class="w-full h-full rounded-full bg-slate-100 flex items-center justify-center overflow-hidden relative">
+                <!-- 실제 사진 파일(profile.jpg) 로딩 / 없을 경우 기본 사람 아이콘 표시 -->
+                <img src="profile.jpg" 
+                     onerror="this.style.display='none'; document.getElementById('fallback-icon').style.display='flex';" 
+                     alt="김기환 팀장 프로필" 
+                     class="w-full h-full object-cover object-top" />
+                <div id="fallback-icon" class="hidden w-full h-full flex items-center justify-center bg-slate-200 text-slate-400">
+                  <i class="fa-solid fa-user text-4xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="absolute bottom-1 right-1 bg-brand-navy text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full border-2 border-white shadow">
+              PRO
+            </div>
+          </div>
+
+          <!-- Name & Title -->
+          <h1 class="text-xl font-bold text-slate-900 tracking-tight">김기환 <span class="text-sm font-semibold text-brand-orange">팀장</span></h1>
+          <p class="text-xs text-slate-500 mt-0.5">한화생명금융서비스(주) 비큐러스 사업부</p>
+          <p class="text-xs text-slate-600 mt-2 bg-slate-100 px-3 py-1 rounded-md font-medium">
+            🛡️ 고객 맞춤 보장 자산 관리 전문
+          </p>
+
+          <!-- Contact Buttons -->
+          <div class="grid grid-cols-2 gap-3 w-full mt-4">
+            <a href="tel:01088333353" class="flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-deepOrange text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition text-xs sm:text-sm">
+              <i class="fa-solid fa-phone"></i>
+              전화 상담하기
+            </a>
+            <button onclick="shareCard()" class="flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 px-4 rounded-xl shadow-md transition text-xs sm:text-sm">
+              <i class="fa-solid fa-share-nodes"></i>
+              명함 공유하기
+            </button>
+          </div>
+
+          <!-- Quick Contact Info -->
+          <div class="w-full border-t border-slate-100 mt-4 pt-3 text-xs text-slate-600 space-y-1.5 text-left">
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400"><i class="fa-solid fa-mobile-screen mr-2 text-brand-orange"></i>직통전화</span>
+              <a href="tel:01088333353" class="font-semibold text-slate-800 hover:underline">010-8833-3353</a>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-slate-400"><i class="fa-solid fa-fax mr-2 text-brand-navy"></i>팩스(FAX)</span>
+              <span class="font-semibold text-slate-800">0504-343-7711</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Section -->
+      <div class="px-5 mt-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-brand-orange"></i>
+            주요 전문 상담 분야
+          </h3>
+          <span class="text-[11px] text-slate-400">맞춤 종합 설계</span>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="space-y-3">
+          
+          <!-- Card 1 -->
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer" onclick="toggleAccordion('card-1')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-orange-100 text-brand-orange flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-slate-800">암 · 질병보험 (보장)</h4>
+                  <p class="text-xs text-slate-500">진단비, 수술비, 치료비의 확실한 범위 설계</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+            </div>
+            <div id="card-1" class="hidden mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600 space-y-2">
+              <p>• <strong>보장의 범위:</strong> 일반암, 유사암, 뇌혈관, 허혈성 심장질환 등 넓은 보장 영역 확보</p>
+              <p>• <strong>보장의 크기:</strong> 치료에 집중할 수 있도록 충분한 진단 자금 체계 구축</p>
+              <p>• <strong>보장의 기간:</strong> 100세 시대에 맞춘 세심하고 안전한 만기 설정</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer" onclick="toggleAccordion('card-2')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 text-brand-blue flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-house-chimney-crack"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-slate-800">화재보험 (누수 · 일상배상)</h4>
+                  <p class="text-xs text-slate-500">우리 집과 이웃의 손해까지 완벽 대비</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+            </div>
+            <div id="card-2" class="hidden mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600 space-y-2">
+              <p>• <strong>누수 및 배상책임:</strong> 윗집·아랫집 누수 피해 및 일상 생활 중 발생할 수 있는 배상 손해 특약 보장</p>
+              <p>• <strong>화재 손해 보장:</strong> 건물, 집기비품 화재 손해 및 벌금, 전세보증금 안전 자산 보호</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-xl p-4 border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer" onclick="toggleAccordion('card-3')">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-lg">
+                  <i class="fa-solid fa-car-on"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-slate-800">자동차보험 (운전자)</h4>
+                  <p class="text-xs text-slate-500">13개 보험사 비교견적 & 운전자 필수 법률 비용</p>
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+            </div>
+            <div id="card-3" class="hidden mt-3 pt-3 border-t border-slate-100 text-xs text-slate-600 space-y-2">
+              <p>• <strong>운전자 형사적 책임:</strong> 합의금, 벌금, 변호사 선임비용 등 3대 핵심 지원금 강화</p>
+              <p>• <strong>다이렉트 이상의 서비스:</strong> 사고 발생 시 신속하고 꼼꼼한 현장 대처 및 밀착 조력</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Business Hours & Contact Banner -->
+      <div class="px-5 mt-6">
+        <div class="bg-slate-900 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
+          <div class="relative z-10 space-y-3">
+            <h4 class="font-bold text-sm text-brand-orange flex items-center gap-2">
+              <i class="fa-solid fa-clock"></i>
+              상담 가능 시간 및 문의 안내
+            </h4>
+            <div class="text-xs text-slate-300 space-y-1">
+              <p>• <strong>월 ~ 토요일:</strong> 09:00 ~ (사전 예약 시 상시 가능)</p>
+              <p>• <strong>일요일/공휴일:</strong> 예약 고객 맞춤 상담 가능</p>
+            </div>
+            <div class="pt-2">
+              <a href="tel:01088333353" class="block text-center bg-gradient-to-r from-brand-orange to-amber-500 hover:opacity-95 text-white font-bold py-3 rounded-xl shadow text-xs sm:text-sm transition">
+                <i class="fa-solid fa-headset mr-2"></i> 010-8833-3353 전화 연결하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Info -->
+      <div class="px-5 mt-8 pb-6 text-center text-slate-400 text-[11px] space-y-1">
+        <p class="font-semibold text-slate-500">한화생명금융서비스(주) 비큐러스 사업부</p>
+        <p>팀장 김기환 | HP: 010-8833-3353 | FAX: 0504-343-7711</p>
+        <p class="text-slate-300 pt-2">© Kim Gi Hwan. All rights reserved.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white text-xs px-5 py-3 rounded-full shadow-2xl transition-all duration-300 opacity-0 translate-y-20 pointer-events-none z-50 flex items-center gap-2 border border-slate-700">
+    <i class="fa-solid fa-check text-brand-orange"></i>
+    <span id="toast-message">명함 링크가 복사되었습니다!</span>
+  </div>
+
+  <!-- JavaScript Interaction Scripts -->
+  <script>
+    // Viewport Toggle Function (Mobile <-> Desktop view)
+    function setViewport(type) {
+      const container = document.getElementById('main-container');
+      const mobileBtn = document.getElementById('view-mobile');
+      const desktopBtn = document.getElementById('view-desktop');
+
+      if (type === 'desktop') {
+        container.classList.remove('max-w-md');
+        container.classList.add('max-w-4xl');
+
+        desktopBtn.classList.remove('text-slate-300');
+        desktopBtn.classList.add('bg-brand-orange', 'text-white');
+
+        mobileBtn.classList.remove('bg-brand-orange', 'text-white');
+        mobileBtn.classList.add('text-slate-300');
+      } else {
+        container.classList.remove('max-w-4xl');
+        container.classList.add('max-w-md');
+
+        mobileBtn.classList.remove('text-slate-300');
+        mobileBtn.classList.add('bg-brand-orange', 'text-white');
+
+        desktopBtn.classList.remove('bg-brand-orange', 'text-white');
+        desktopBtn.classList.add('text-slate-300');
+      }
+    }
+
+    // Toggle Accordion in Service Cards
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      if (content) {
+        content.classList.toggle('hidden');
+      }
+    }
+
+    // Toast Alert Notification System
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      toastMessage.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Share Card Link Function
+    function shareCard() {
+      const tempInput = document.createElement('input');
+      tempInput.value = window.location.href;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast('명함 링크가 복사되었습니다! 카카오톡에 붙여넣어 공유하세요.');
+    }
+  </script>
